@@ -1,9 +1,13 @@
 import { navItems } from '../data/navItems'
-
+import { LayoutGrid } from 'lucide-react'
 export default function Sidebar() {
   return (
     <aside className="sidebar">
-      <div className="brand">FocusBoard</div>
+      <div className="brand">
+        <span className="brand-logo"><LayoutGrid size={16} aria-hidden="true" /></span>
+        FocusBoard
+      </div>
+      <p className="nav-section">Workspace</p>
       <nav aria-label="Main navigation">
         <ul>
           {navItems.map(({ label, icon: Icon }, index) => (

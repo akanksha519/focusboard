@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ListTodo, Loader, CircleCheck, Percent } from 'lucide-react'
+import { ListTodo, Loader, CircleCheck} from 'lucide-react'
 import useLocalStorage from './hooks/useLocalStorage'
 import { sampleTasks, STATUS, PRIORITIES } from './data/sampleTasks'
 import Sidebar from './components/Sidebar'
@@ -73,49 +73,53 @@ const resetFilters = () => {
   setStatusFilter('All')
   setPriorityFilter('All')
 }
-  return (
+    return (
     <div className="app">
       <Sidebar />
       <main className="main">
         <Header onAdd={openCreate} />
 
+        <FocusNotes tasks={tasks} completion={completion} />
+
+        <section aria-label="Overview" className="stats">
+          <StatCard title="Total tasks" value={total} caption="Across all projects" icon={ListTodo} />
+          <StatCard title="In progress" value={inProgress} caption="Keep the momentum" icon={Loader} />
+          <StatCard title="Completed" value={completed} caption="Great work this week" icon={CircleCheck} />
+        </section>
+
         <section aria-labelledby="tasks-heading" className="tasks-section">
-  <h2 id="tasks-heading">My tasks</h2>
-  <p className="subtitle">Manage and track everything in one place.</p>
+          <h2 id="tasks-heading">My tasks</h2>
+          <p className="subtitle">Manage and track everything in one place.</p>
 
-  <div className="toolbar">
-    <FilterTabs active={statusFilter} onChange={setStatusFilter} totalCount={total} />
-    <SearchBar value={search} onChange={setSearch} />
-    <select
-      className="priority-select"
-      value={priorityFilter}
-      onChange={e => setPriorityFilter(e.target.value)}
-      aria-label="Filter by priority"
-    >
-      <option value="All">Priority: All</option>
-      {PRIORITIES.map(p => <option key={p} value={p}>Priority: {p}</option>)}
-    </select>
-    {filtersActive && (
-      <button className="btn-secondary" onClick={resetFilters}>Clear filters</button>
-    )}
-  </div>
+          <div className="toolbar">
+            <FilterTabs active={statusFilter} onChange={setStatusFilter} totalCount={total} />
+            <SearchBar value={search} onChange={setSearch} />
+            <select
+              className="priority-select"
+              value={priorityFilter}
+              onChange={e => setPriorityFilter(e.target.value)}
+              aria-label="Filter by priority"
+            >
+              <option value="All">Priority: All</option>
+              {PRIORITIES.map(p => <option key={p} value={p}>Priority: {p}</option>)}
+            </select>
+            {filtersActive && (
+              <button className="btn-secondary" onClick={resetFilters}>Clear filters</button>
+            )}
+          </div>
 
-  <TaskList
-    tasks={visibleTasks}
-    emptyMessage={
-      tasks.length === 0
-        ? 'No tasks yet. Click "New task" to add one.'
-        : 'No tasks match your search or filters.'
-    }
-    onStatusChange={changeStatus}
-    onEdit={openEdit}
-    onDelete={setTaskToDelete}
-  />
-</section>
-
-        <FocusNotes />
-
-        
+          <TaskList
+            tasks={visibleTasks}
+            emptyMessage={
+              tasks.length === 0
+                ? 'No tasks yet. Click "New task" to add one.'
+                : 'No tasks match your search or filters.'
+            }
+            onStatusChange={changeStatus}
+            onEdit={openEdit}
+            onDelete={setTaskToDelete}
+          />
+        </section>
       </main>
       <BottomNav />
 

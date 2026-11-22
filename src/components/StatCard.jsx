@@ -1,12 +1,15 @@
-export default function StatCard({ title, value, icon: Icon }) {
+export default function StatCard({ title, value, caption, icon: Icon }) {
   return (
     <article className="stat-card">
-      <div className="stat-icon">
-        <Icon size={20} aria-hidden="true" />
+      <div className="stat-top">
+        <span className="stat-icon">
+          <Icon size={18} aria-hidden="true" />
+        </span>
+        <span className="stat-title">{title}</span>
       </div>
-      <div>
-        <p className="stat-title">{title}</p>
-        <p className="stat-value">{value}</p>
+      <div className="stat-bottom">
+        <strong className="stat-value">{value}</strong>
+        <span className="stat-caption">{caption}</span>
       </div>
     </article>
   )
