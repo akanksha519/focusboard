@@ -1,5 +1,6 @@
 import useLocalStorage from './hooks/useLocalStorage'
 import { sampleTasks, STATUS } from './data/sampleTasks'
+import FocusNotes from './components/FocusNotes'
 import { ListTodo, Loader, CircleCheck, Percent } from 'lucide-react'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
@@ -27,7 +28,7 @@ export default function App() {
           <StatCard title="Completion" value={`${completion}%`} icon={Percent} />
         </section>
 
-        <section aria-label="Focus Notes" className="placeholder">Carousel goes here</section>
+        <FocusNotes />
         <section aria-label="Tasks" className="placeholder">
           Task list goes here ({tasks.length} tasks)
         </section>
