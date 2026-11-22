@@ -1,4 +1,9 @@
-export const STATUSES = ['To do', 'In progress', 'Completed']
+export const STATUS = {
+  TODO: 'To do',
+  IN_PROGRESS: 'In progress',
+  COMPLETED: 'Completed',
+}
+export const STATUSES = Object.values(STATUS)
 export const PRIORITIES = ['Low', 'Medium', 'High']
 
 export const sampleTasks = [
