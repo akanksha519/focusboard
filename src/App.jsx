@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import TaskForm from './components/TaskForm'
 import useLocalStorage from './hooks/useLocalStorage'
 import { sampleTasks, STATUS } from './data/sampleTasks'
 import FocusNotes from './components/FocusNotes'
@@ -7,7 +9,14 @@ import Header from './components/Header'
 import StatCard from './components/StatCard'
 
 export default function App() {
-  const [tasks] = useLocalStorage('focusboard_tasks', sampleTasks)
+  const [tasks, setTasks] = useLocalStorage('focusboard_tasks', sampleTasks)
+  const [showForm, setShowForm] = useState(false)
+
+  const addTask = data => {
+  const newTask = { ...data, id: crypto.randomUUID(), category: 'General' }
+  setTasks([newTask, ...tasks])
+  setShowForm(false)
+}
 
   // Derived values: calculated from `tasks`, never stored
   const total = tasks.length
@@ -19,8 +28,7 @@ export default function App() {
     <div className="app">
       <Sidebar />
       <main className="main">
-        <Header onAdd={() => console.log('Add task clicked')} />
-
+        <Header onAdd={() => setShowForm(true)} />
         <section aria-label="Overview" className="stats">
           <StatCard title="Total tasks" value={total} icon={ListTodo} />
           <StatCard title="In progress" value={inProgress} icon={Loader} />
@@ -33,6 +41,7 @@ export default function App() {
           Task list goes here ({tasks.length} tasks)
         </section>
       </main>
+      {showForm && <TaskForm onSave={addTask} onCancel={() => setShowForm(false)} />}
     </div>
   )
 }

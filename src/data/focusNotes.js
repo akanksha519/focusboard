@@ -1,5 +1,5 @@
 export const focusNotes = [
-  { id: 1, title: 'Plan your day', text: 'Organise your priorities and focus on what matters most.' },
-  { id: 2, title: 'Work in focused blocks', text: 'Silence notifications and finish one task before starting the next.' },
-  { id: 3, title: 'Review your progress', text: 'Mark finished tasks as completed and pick tomorrow\'s top priority.' },
+  { id: 1, title: 'Make today count.', text: 'A little focus goes a long way.' },
+  { id: 2, title: 'Small steps, big progress.', text: 'Keep your priorities in view.' },
+  { id: 3, title: 'Celebrate the wins.', text: 'Every completed task moves you forward.' },
 ]

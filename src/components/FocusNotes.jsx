@@ -19,7 +19,9 @@ export default function FocusNotes() {
         aria-label={`${index + 1} of ${total}`}
         aria-live="polite"
       >
-        <p className="slide-count">Focus Notes · {index + 1} of {total}</p>
+        <p className="slide-count">
+            Focus notes · {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+        </p>        
         <h2>{note.title}</h2>
         <p>{note.text}</p>
       </div>
