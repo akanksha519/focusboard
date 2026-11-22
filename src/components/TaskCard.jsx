@@ -1,11 +1,10 @@
-import { Calendar, Check } from 'lucide-react'
 import { STATUS, STATUSES } from '../data/sampleTasks'
+import { Calendar, Check, Pencil, Trash2 } from 'lucide-react'
 
 const formatDate = iso =>
   iso ? new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''
 
-export default function TaskCard({ task, onStatusChange }) {
-  const done = task.status === STATUS.COMPLETED
+export default function TaskCard({ task, onStatusChange, onEdit, onDelete }) {  const done = task.status === STATUS.COMPLETED
 
   return (
     <li className={done ? 'task done' : 'task'}>
@@ -23,15 +22,13 @@ export default function TaskCard({ task, onStatusChange }) {
         {task.description && <p className="subtitle">{task.description}</p>}
       </div>
 
-      <div className="task-meta">
-        <span className="badge badge-category">{task.category}</span>
-        <span className={`badge badge-${task.priority.toLowerCase()}`}>{task.priority}</span>
-        {task.dueDate && (
-          <span className="due">
-            <Calendar size={14} aria-hidden="true" />
-            {formatDate(task.dueDate)}
-          </span>
-        )}
+        <div className="task-actions">
+        <button className="icon-btn" onClick={() => onEdit(task)} aria-label={`Edit ${task.title}`}>
+          <Pencil size={18} aria-hidden="true" />
+        </button>
+        <button className="icon-btn danger" onClick={() => onDelete(task)} aria-label={`Delete ${task.title}`}>
+          <Trash2 size={18} aria-hidden="true" />
+        </button>
       </div>
 
       <select

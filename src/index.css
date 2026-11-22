@@ -301,6 +301,20 @@ h1, p { margin: 0; }
 }
 
 @media (max-width: 900px) {
-  .task { grid-template-columns: auto minmax(0, 1fr); }
-  .task-meta, .status-select { grid-column: 2; justify-self: start; }
+  .task {grid-template-columns: auto minmax(0, 1fr) auto auto auto; }
+  .task-meta, .status-select, .task-actions { grid-column: 2; justify-self: start; }
+}
+.task-actions { display: flex; gap: 4px; }
+.icon-btn.danger { color: #c62d3f; }
+
+.dialog.small { max-width: 420px; }
+
+.btn-danger {
+  background: #c62d3f;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font: inherit;
+  cursor: pointer;
 }
