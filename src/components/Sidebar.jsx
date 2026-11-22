@@ -1,12 +1,4 @@
-import { LayoutDashboard, ListTodo, Calendar, BarChart3, Settings } from 'lucide-react'
-
-const items = [
-  { label: 'Dashboard', icon: LayoutDashboard },
-  { label: 'Tasks', icon: ListTodo },
-  { label: 'Calendar', icon: Calendar },
-  { label: 'Reports', icon: BarChart3 },
-  { label: 'Settings', icon: Settings },
-]
+import { navItems } from '../data/navItems'
 
 export default function Sidebar() {
   return (
@@ -14,7 +6,7 @@ export default function Sidebar() {
       <div className="brand">FocusBoard</div>
       <nav aria-label="Main navigation">
         <ul>
-          {items.map(({ label, icon: Icon }, index) => (
+          {navItems.map(({ label, icon: Icon }, index) => (
             <li key={label}>
               <a
                 href="#"

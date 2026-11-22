@@ -1,8 +1,8 @@
 import TaskCard from './TaskCard'
 
-export default function TaskList({ tasks, onStatusChange, onEdit, onDelete }) {
+export default function TaskList({ tasks, emptyMessage, onStatusChange, onEdit, onDelete }) {
   if (tasks.length === 0) {
-    return <p className="empty">No tasks yet. Click "New task" to add one.</p>
+    return <p className="empty">{emptyMessage}</p>
   }
 
   return (
