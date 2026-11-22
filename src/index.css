@@ -237,3 +237,70 @@ h1, p { margin: 0; }
   .form-row { grid-template-columns: 1fr; }
   .form-actions button { flex: 1; }
 }
+.tasks-section { display: grid; gap: 12px; }
+.tasks-section h2 { margin: 0; }
+
+.task-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+
+.task {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.task h3 { margin: 0; font-size: 0.95rem; overflow-wrap: anywhere; }
+.task.done h3 { text-decoration: line-through; color: var(--muted); }
+
+.check {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  background: #eceaff;
+  color: var(--accent);
+  cursor: pointer;
+}
+.check::after { content: ''; position: absolute; inset: -8px; }
+.check.checked { background: #dff5ea; border-color: #13795b; color: #13795b; }
+
+.task-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.badge { padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; }
+.badge-category { background: #eceaff; color: var(--accent); }
+.badge-high { background: #fff1dc; color: #a45a06; }
+.badge-medium, .badge-low { background: #dff5ea; color: #13795b; }
+
+.due { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; }
+
+.status-select {
+  min-height: 40px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 900px) {
+  .task { grid-template-columns: auto minmax(0, 1fr); }
+  .task-meta, .status-select { grid-column: 2; justify-self: start; }
+}

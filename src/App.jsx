@@ -7,6 +7,7 @@ import { ListTodo, Loader, CircleCheck, Percent } from 'lucide-react'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import StatCard from './components/StatCard'
+import TaskList from './components/TaskList'
 
 export default function App() {
   const [tasks, setTasks] = useLocalStorage('focusboard_tasks', sampleTasks)
@@ -17,6 +18,8 @@ export default function App() {
   setTasks([newTask, ...tasks])
   setShowForm(false)
 }
+const changeStatus = (id, status) =>
+  setTasks(tasks.map(t => (t.id === id ? { ...t, status } : t)))
 
   // Derived values: calculated from `tasks`, never stored
   const total = tasks.length
@@ -37,8 +40,10 @@ export default function App() {
         </section>
 
         <FocusNotes />
-        <section aria-label="Tasks" className="placeholder">
-          Task list goes here ({tasks.length} tasks)
+        <section aria-labelledby="tasks-heading" className="tasks-section">
+            <h2 id="tasks-heading">My tasks</h2>
+            <p className="subtitle">Manage and track everything in one place.</p>
+            <TaskList tasks={tasks} onStatusChange={changeStatus} />
         </section>
       </main>
       {showForm && <TaskForm onSave={addTask} onCancel={() => setShowForm(false)} />}
