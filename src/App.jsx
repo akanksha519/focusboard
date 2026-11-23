@@ -73,7 +73,7 @@ const resetFilters = () => {
   setStatusFilter('All')
   setPriorityFilter('All')
 }
-    return (
+      return (
     <div className="app">
       <Sidebar />
       <main className="main">
