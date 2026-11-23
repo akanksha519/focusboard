@@ -48,7 +48,7 @@ I used React hooks (`useState`) with a custom `useLocalStorage` hook, with no ex
 `useLocalStorage` reads the saved tasks once, on first render, using a lazy `useState` initializer. If nothing is saved (`getItem` returns `null`), it uses the six sample tasks. A `useEffect` writes the tasks back whenever they change. Reads and writes are wrapped in `try/catch`, so corrupted or blocked storage falls back to the samples. Sample data never overwrites saved data, and an empty saved list stays empty.
 
 ## Limitations
-- [List honestly what is not matched to Figma, for example: colors/spacing are close approximations; top bar, mobile hero card and the "..." task menu are not implemented.]
+
 - The sidebar and bottom navigation links are visual placeholders; there is only one screen.
 - I added a "To do" tab that is not in the Figma tabs, so that all three statuses can be filtered.
 - New tasks get the default category "General", because the Figma form has no category field.
